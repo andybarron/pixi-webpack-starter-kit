@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Ludum Dare 37 entry",
   "scripts": {
+    "private-build-dev": "cross-env NODE_ENV=development webpack --progress --hide-modules",
+    "private-lint-root": "eslint *.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot --content-base dist/",
+    "build-dev": "npm-run-all private-lint-root private-build-dev",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
     "type": "git",
@@ -13,5 +18,29 @@
   "bugs": {
     "url": "https://github.com/AndyBarron/ludum-37/issues"
   },
-  "homepage": "https://github.com/AndyBarron/ludum-37#readme"
+  "homepage": "https://github.com/AndyBarron/ludum-37#readme",
+  "dependencies": {
+    "axios": "0.15.3",
+    "babel-core": "6.18.2",
+    "babel-loader": "6.2.9",
+    "babel-preset-es2015": "6.18.0",
+    "clean-webpack-plugin": "0.1.14",
+    "copy-webpack-plugin": "4.0.1",
+    "core-js": "2.4.1",
+    "cross-env": "3.1.3",
+    "css-loader": "^0.26.1",
+    "eslint": "3.11.1",
+    "eslint-loader": "1.6.1",
+    "extract-text-webpack-plugin": "2.0.0-beta.4",
+    "generate-asset-webpack-plugin": "0.3.0",
+    "html-webpack-plugin": "2.24.1",
+    "npm-run-all": "3.1.2",
+    "pixi.js": "4.2.3",
+    "raf": "3.3.0",
+    "slash": "1.0.0",
+    "style-loader": "0.13.1",
+    "walk": "2.3.9",
+    "webpack": "2.1.0-beta.27",
+    "webpack-dev-server": "2.1.0-beta.12"
+  }
 }

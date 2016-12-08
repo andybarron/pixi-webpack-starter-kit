@@ -1,0 +1,17 @@
+{
+  "name": "ludum-37",
+  "version": "1.0.0",
+  "description": "Ludum Dare 37 entry",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndyBarron/ludum-37.git"
+  },
+  "author": "Andy Barron <AndrewLBarron@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AndyBarron/ludum-37/issues"
+  },
+  "homepage": "https://github.com/AndyBarron/ludum-37#readme"
+}

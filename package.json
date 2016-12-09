@@ -39,6 +39,7 @@
     "raf": "3.3.0",
     "slash": "1.0.0",
     "style-loader": "0.13.1",
+    "texture-atlas": "0.2.1",
     "walk": "2.3.9",
     "webpack": "2.1.0-beta.27",
     "webpack-dev-server": "2.1.0-beta.12"

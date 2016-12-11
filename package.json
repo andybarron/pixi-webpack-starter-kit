@@ -1,7 +1,7 @@
 {
-  "name": "ludum-37",
+  "name": "pixi-webpack-starter-kit",
   "version": "1.0.0",
-  "description": "Ludum Dare 37 entry",
+  "description": "JS game dev quick-start",
   "scripts": {
     "private-build-dev": "cross-env NODE_ENV=development webpack --progress --hide-modules",
     "private-lint-root": "eslint *.js",

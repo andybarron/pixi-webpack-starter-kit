@@ -3,6 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const GenerateAssetPlugin = require('generate-asset-webpack-plugin');
+const generateAudioMap = require('./build/generate-audio-map');
 const generateTextureMap = require('./build/generate-texture-map');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
@@ -17,6 +18,7 @@ const EXCLUDE_PATHS = [path.resolve(ROOT, 'node_modules')];
 const ENTRY_POINT = path.join(ROOT, 'src/node_modules/game');
 const OUTPUT_PATH = path.join(ROOT, 'dist');
 const PUBLIC_PATH = '';
+const AUDIO_PATH = sharedConfig.audioPath;
 const TEXTURE_PATH = sharedConfig.texturePath;
 
 let cssLoader;
@@ -31,7 +33,7 @@ if (IS_PRODUCTION) {
 
 const config = {
   context: ROOT,
-  entry: ['core-js/shim', ENTRY_POINT],
+  entry: ['babel-polyfill', ENTRY_POINT],
   output: {
     path: OUTPUT_PATH,
     publicPath: PUBLIC_PATH,
@@ -43,18 +45,30 @@ const config = {
       verbose: false,
     }),
     new CopyWebpackPlugin([
+      { from: 'res/snd', to: AUDIO_PATH },
       { from: 'res/tex', to: TEXTURE_PATH },
     ], { ignore: ['.*'] }),
     new GenerateAssetPlugin({
       filename: sharedConfig.textureMap,
       fn: (_compilation, cb) => {
         const dir = path.join(ROOT, 'res/tex');
-        generateTextureMap(dir, cb);
+        generateTextureMap(dir)
+          .then((map) => cb(null, map))
+          .catch((err) => cb(err, null));
+      },
+    }),
+    new GenerateAssetPlugin({
+      filename: sharedConfig.audioMap,
+      fn: (_compilation, cb) => {
+        const dir = path.join(ROOT, 'res/snd');
+        generateAudioMap(dir)
+          .then((map) => cb(null, map))
+          .catch((err) => cb(err, null));
       },
     }),
     new webpack.optimize.OccurrenceOrderPlugin(false),
     new HtmlWebpackPlugin({
-      title: 'Ludum Dare 37',
+      title: 'PIXI/Webpack Starter Kit',
       cache: false,
       minify: { collapseWhitespace: true },
       hash: true,

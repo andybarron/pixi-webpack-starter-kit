@@ -11,10 +11,12 @@
       "argsIgnorePattern": "^_" ,
       "args": "all"
     }],
+    "no-unreachable": ["warn"],
+    "no-console": ["warn"],
     "prefer-const": ["warn"]
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2015,
     "sourceType": "script"
   },
   "env": {
